@@ -14,16 +14,16 @@
 #Step 0: Download Data
 #url <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2FNEI_data.zip"
 #download.file(url,destfile='emissions_data',method=dlMethod,mode="wb")
-unzip(zipfile = "emissions_data.zip")
+#unzip(zipfile = "emissions_data.zip")
 
 #Step 1: Read in Data
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
-#Aggregate the Emissions data by Year
+#Step 2: Aggregate the Emissions data by Year
 byyear <- aggregate(Emissions ~ year, NEI, FUN = "sum")
 
-#Plot the Total Emissions by Year
+#Step 3: Plot the Total Emissions by Year
 plotfile <- png("plot1.png", width = 480, height = 480)
 barplot(byyear$Emissions, names = byyear$year, xlab = "Year",
           ylab = "Total PM2.5 Emissions",main = "Total US PM2.5 Emissions (All Sources)")
